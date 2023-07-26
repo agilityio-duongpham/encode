@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 
 interface RequestBody {
@@ -11,9 +10,8 @@ interface RequestBody {
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const body = req.body as RequestBody;
+    const encode = encodeURIComponent(JSON.stringify(body));
 
-    console.log(body);
-
-    return res.status(200).json(encodeURIComponent(JSON.stringify(body)));
+    return res.status(200).json(encode);
   }
 }
